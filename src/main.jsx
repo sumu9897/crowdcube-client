@@ -1,13 +1,40 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import  ReactDOM  from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 
 
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom"
+import Home from './pages/Home.jsx'
+import AddCampaing from './pages/AddCampaing.jsx'
+import AllCampaings from './pages/AllCampaings'
+import MyCampaing from './pages/MyCampaing.jsx'
+
+const router = createBrowserRouter([
+  {
+    path:'/',
+    element: <Home/>
+  },
+  {
+    path:'addCampaign',
+    element: <AddCampaing/>
+  },
+  {
+    path: 'campaigns',
+    element: <AllCampaings/>
+  },
+  {
+    path : 'myCampaign',
+    element: <MyCampaing/>
+  }
+])
 
 
-createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </StrictMode>,
 )
