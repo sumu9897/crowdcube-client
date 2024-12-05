@@ -1,5 +1,6 @@
 import React from "react";
 import { FaPlus, FaCalendarAlt, FaDollarSign } from "react-icons/fa";
+import Swal from 'sweetalert2'
 
 function AddCampaign() {
   const userName = "John Doe"; // Replace with dynamic data if available
@@ -31,6 +32,14 @@ function AddCampaign() {
     .then(res=> res.json())
     .then(data => {
         console.log(data);
+        if(data.insertedId){
+            Swal.fire({
+                title: 'Success!',
+                text: 'Campaing Addes Successfully',
+                icon : 'success',
+                confirmButtonText : 'Cool'
+            })
+        }
     })
   }
 
