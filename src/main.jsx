@@ -12,6 +12,9 @@ import AddCampaing from './pages/AddCampaing.jsx'
 import AllCampaings from './pages/AllCampaings'
 import MyCampaing from './pages/MyCampaing.jsx'
 import CampaignDetails from './pages/CampaignDetails.jsx' // Import the CampaignDetails component
+import Login from './pages/Login.jsx'
+import Register from './pages/Register.jsx'
+import AuthProvider from './providers/AuthProvider.jsx'
 
 const router = createBrowserRouter([
   {
@@ -32,13 +35,23 @@ const router = createBrowserRouter([
     element: <MyCampaing/>
   },
   {
-    path: 'campaign/:id', // Define the dynamic route for campaign details
-    element: <CampaignDetails/> // Specify the element for this route
+    path: 'campaign/:id', 
+    element: <CampaignDetails/> 
+  },
+  {
+    path: 'signin',
+    element: <Login/>
+  },
+  {
+    path : 'signup',
+    element :<Register/>
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <AuthProvider>
     <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )

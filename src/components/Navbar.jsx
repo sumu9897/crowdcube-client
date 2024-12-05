@@ -46,13 +46,13 @@ function Navbar() {
         {/* Login/Register Section */}
         <div className="space-x-4 hidden md:block">
           <a
-            href="/login"
+            href="/signin"
             className="px-4 py-2 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition"
           >
             Login
           </a>
           <a
-            href="/register"
+            href="/signup"
             className="px-4 py-2 border border-yellow-400 rounded hover:bg-yellow-400 hover:text-gray-900 transition"
           >
             Register
