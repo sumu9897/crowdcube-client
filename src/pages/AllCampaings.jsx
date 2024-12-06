@@ -1,62 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const AllCampaigns = () => {
+const AllCampaings = () => {
   const [campaigns, setCampaigns] = useState([]);
-  const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
-    // Fetch all campaigns from the database
-    fetch("http://localhost:3530/campaigns")
+    fetch("http://localhost:3530/campaign")
       .then((res) => res.json())
-      .then((data) => {
-        setCampaigns(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching campaigns:", error);
-        setLoading(false);
-      });
+      .then((data) => setCampaigns(data))
+      .catch((err) => console.error(err));
   }, []);
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-yellow-500"></div>
-      </div>
-    );
-  }
-
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-gray-100 shadow-md rounded-md mt-10">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6">All Campaigns</h2>
+    <div className="container mx-auto p-4">
+      <h2 className="text-2xl font-bold mb-4">All Campaigns</h2>
       <div className="overflow-x-auto">
-        <table className="table-auto w-full border-collapse border border-gray-300">
+        <table className="table w-full">
           <thead>
-            <tr className="bg-gray-200 text-gray-800">
-              <th className="border border-gray-300 px-4 py-2">Title</th>
-              <th className="border border-gray-300 px-4 py-2">Type</th>
-              <th className="border border-gray-300 px-4 py-2">Minimum Donation</th>
-              <th className="border border-gray-300 px-4 py-2">Deadline</th>
-              <th className="border border-gray-300 px-4 py-2">Actions</th>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Type</th>
+              <th>Minimum Donation</th>
+              <th>Deadline</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {campaigns.map((campaign) => (
-              <tr key={campaign._id} className="text-center">
-                <td className="border border-gray-300 px-4 py-2">{campaign.title}</td>
-                <td className="border border-gray-300 px-4 py-2">{campaign.type}</td>
-                <td className="border border-gray-300 px-4 py-2">${campaign.donation}</td>
-                <td className="border border-gray-300 px-4 py-2">{new Date(campaign.deadline).toLocaleDateString()}</td>
-                <td className="border border-gray-300 px-4 py-2">
-                <Link
-                    to={`/campaign/${campaign._id}`} // Use campaign._id
-                    className="px-4 py-2 bg-yellow-400 text-gray-900 rounded-md hover:bg-yellow-500 transition"
-                    >
-                    See Details
-                </Link>
-
+            {campaigns.map((campaign, index) => (
+              <tr key={campaign._id}>
+                <td>{index + 1}</td>
+                <td>{campaign.title}</td>
+                <td>{campaign.type}</td>
+                <td>${campaign.minDonation}</td>
+                <td>{new Date(campaign.deadline).toLocaleDateString()}</td>
+                <td>
+                  <Link to={`/campaign/${campaign._id}`} className="btn btn-info btn-sm">
+                    See More
+                  </Link>
                 </td>
               </tr>
             ))}
@@ -67,4 +48,4 @@ const AllCampaigns = () => {
   );
 };
 
-export default AllCampaigns;
+export default AllCampaings;
