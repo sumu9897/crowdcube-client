@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import toast from "react-hot-toast";
 
 const CampaignDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const [campaign, setCampaign] = useState(null);
 
@@ -15,28 +16,12 @@ const CampaignDetails = () => {
       .catch((err) => console.error(err));
   }, [id]);
 
-  const handleDonate = async () => {
-    const donation = {
-      campaignId: id,
-      campaignTitle: campaign.title,
-      userEmail: user.email,
-      userName: user.displayName || "Anonymous",
-    };
-
-    try {
-      const response = await fetch("http://localhost:3530/donations", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(donation),
-      });
-      const result = await response.json();
-      if (result.insertedId) {
-        toast.success("Thank you for your donation!");
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to process donation!");
+  const handleDonate = () => {
+    if (!user) {
+      navigate(`/signin?redirect=/donate/${id}`);
+      return;
     }
+    navigate(`/donate/${id}`);
   };
 
   if (!campaign) {
@@ -50,7 +35,8 @@ const CampaignDetails = () => {
       <p><strong>Description:</strong> {campaign.description}</p>
       <p><strong>Minimum Donation:</strong> ${campaign.minDonation}</p>
       <p><strong>Deadline:</strong> {new Date(campaign.deadline).toLocaleDateString()}</p>
-      <button onClick={handleDonate} className="btn btn-success">
+
+      <button onClick={handleDonate} className="btn btn-success mt-4">
         Donate
       </button>
     </div>

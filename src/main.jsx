@@ -21,6 +21,7 @@ import UpdateCampaign from './pages/UpdateCampaign.jsx'
 import AuthLayout from './layout/AuthLayout.jsx'
 import PrivateRoute from './routes/privateRoute.jsx'
 import MyDonations from './pages/MyDonations.jsx'
+import DonateForm from './pages/DonateForm.jsx'
 
 const router = createBrowserRouter([
   {
@@ -51,9 +52,13 @@ const router = createBrowserRouter([
         element: <MyCampaing/>
       },
       {
-        path: 'myDonations',
+        path: 'mydonations',
         element: <MyDonations />,
-      },  
+      },
+      {
+        path: "/donate/:id",
+        element: <DonateForm/>
+      },
     
       {
         path : "/updateCampaign/:id",
@@ -70,9 +75,8 @@ const router = createBrowserRouter([
       {
         path : 'signup',
         element :<Register/>
-      }
+      },
       
-
     ]
   },
 

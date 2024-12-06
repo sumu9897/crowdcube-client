@@ -23,6 +23,7 @@ const UpdateCampaign = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const response = await fetch(`http://localhost:3530/campaign/${id}`, {
         method: "PUT",
@@ -31,10 +32,14 @@ const UpdateCampaign = () => {
         },
         body: JSON.stringify(formData),
       });
+
       const result = await response.json();
+
       if (result.modifiedCount > 0) {
-        toast.success("Campaign updated successfully!");
-        navigate("/myCampaign");
+        toast.success("Campaign updated successfully!"); // Success toast
+        navigate("/myCampaign"); // Redirect to /myCampaign
+      } else {
+        toast.error("No changes were made to the campaign.");
       }
     } catch (error) {
       console.error(error);

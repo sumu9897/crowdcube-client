@@ -1,18 +1,22 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate(); // Use navigate for redirection
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleLogout = () => {
     logOut()
-      .then(() => toast.success("Successfully logged out!"))
+      .then(() => {
+        toast.success("Successfully logged out!");
+        navigate("/"); // Redirect to home page
+      })
       .catch(() => toast.error("Failed to log out."));
   };
 
