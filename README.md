@@ -4,7 +4,9 @@
 
 Crowdcube is a dynamic crowdfunding platform where individuals can create, support, and contribute to various projects, startups, and personal causes. Whether it's raising funds for creative ideas, personal needs, or business ventures, Crowdcube empowers people to bring ideas to life by inviting others to contribute financially.
 
-![Crowdcube Logo](https://i.ibb.co/RBGH63q/crowdcube.webp)
+<p align="center">
+  <img src="https://i.ibb.co/RBGH63q/crowdcube.webp" alt="Crowdcube Logo" width="250" height="250" />
+</p>
 
 ---
 
@@ -79,4 +81,3 @@ Crowdcube is a dynamic crowdfunding platform where individuals can create, suppo
 
 ### 🔹 **Server-Side**  
 [**GitHub Server-Side Repository**](https://github.com/programming-hero-web-course2/b10-a10-server-side-sumu9897)  
-
