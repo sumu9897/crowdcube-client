@@ -15,6 +15,7 @@ const MyCampaign = () => {
       fetch(`http://localhost:3530/campaign?userEmail=${user.email}`)
         .then((res) => res.json())
         .then((data) => {
+          console.log("Fetched campaigns:", data);  // Debug log
           setCampaigns(data);
           setLoading(false);
         })
@@ -36,7 +37,9 @@ const MyCampaign = () => {
 
         if (result.deletedCount > 0) {
           toast.success("Campaign deleted successfully!");
-          setCampaigns((prev) => prev.filter((campaign) => campaign._id !== selectedCampaign));
+          setCampaigns((prev) =>
+            prev.filter((campaign) => campaign._id !== selectedCampaign)
+          );
         } else {
           toast.error("Failed to delete campaign.");
         }
@@ -59,6 +62,10 @@ const MyCampaign = () => {
     setSelectedCampaign(null);
   };
 
+  const calculateTotalDonations = (campaign) => {
+    return campaign.totalDonations || 0;
+  };
+
   if (loading) return <p>Loading campaigns...</p>;
 
   return (
@@ -72,9 +79,11 @@ const MyCampaign = () => {
               <th>#</th>
               <th>Title</th>
               <th>Type</th>
+              <th>Total Donations</th>
               <th>Actions</th>
             </tr>
           </thead>
+
           <tbody>
             {campaigns.length > 0 ? (
               campaigns.map((campaign, index) => (
@@ -82,6 +91,10 @@ const MyCampaign = () => {
                   <td>{index + 1}</td>
                   <td>{campaign.title}</td>
                   <td>{campaign.type}</td>
+
+                  {/* Calculate and display the total donations */}
+                  <td>${calculateTotalDonations(campaign)}</td>
+
                   <td>
                     <Link
                       to={`/updateCampaign/${campaign._id}`}
@@ -100,7 +113,7 @@ const MyCampaign = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="4" className="text-center">
+                <td colSpan="5" className="text-center">
                   No campaigns found.
                 </td>
               </tr>
@@ -109,7 +122,7 @@ const MyCampaign = () => {
         </table>
       </div>
 
-      {/* Modal */}
+      {/* Modal for confirmation before deletion */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded shadow-lg">
