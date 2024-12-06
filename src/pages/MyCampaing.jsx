@@ -7,6 +7,8 @@ const MyCampaign = () => {
   const { user } = useContext(AuthContext);
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedCampaign, setSelectedCampaign] = useState(null);
 
   useEffect(() => {
     if (user?.email) {
@@ -24,24 +26,37 @@ const MyCampaign = () => {
     }
   }, [user]);
 
-  const handleDelete = async (id) => {
-    const confirm = window.confirm("Are you sure you want to delete this campaign?");
-    if (!confirm) return;
+  const handleDelete = async () => {
+    if (selectedCampaign) {
+      try {
+        const response = await fetch(`http://localhost:3530/campaign/${selectedCampaign}`, {
+          method: "DELETE",
+        });
+        const result = await response.json();
 
-    try {
-      const response = await fetch(`http://localhost:3530/campaign/${id}`, {
-        method: "DELETE",
-      });
-      const result = await response.json();
-
-      if (result.deletedCount > 0) {
-        toast.success("Campaign deleted successfully!");
-        setCampaigns((prev) => prev.filter((campaign) => campaign._id !== id));
+        if (result.deletedCount > 0) {
+          toast.success("Campaign deleted successfully!");
+          setCampaigns((prev) => prev.filter((campaign) => campaign._id !== selectedCampaign));
+        } else {
+          toast.error("Failed to delete campaign.");
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("An error occurred while deleting the campaign.");
       }
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to delete campaign!");
     }
+    setShowModal(false);
+    setSelectedCampaign(null);
+  };
+
+  const openModal = (id) => {
+    setSelectedCampaign(id);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedCampaign(null);
   };
 
   if (loading) return <p>Loading campaigns...</p>;
@@ -49,6 +64,7 @@ const MyCampaign = () => {
   return (
     <div className="container mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">My Campaigns</h2>
+
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
@@ -67,11 +83,14 @@ const MyCampaign = () => {
                   <td>{campaign.title}</td>
                   <td>{campaign.type}</td>
                   <td>
-                    <Link to={`/updateCampaign/${campaign._id}`} className="btn btn-warning btn-sm mr-2">
+                    <Link
+                      to={`/updateCampaign/${campaign._id}`}
+                      className="btn btn-warning btn-sm mr-2"
+                    >
                       Update
                     </Link>
                     <button
-                      onClick={() => handleDelete(campaign._id)}
+                      onClick={() => openModal(campaign._id)}
                       className="btn btn-danger btn-sm"
                     >
                       Delete
@@ -89,6 +108,30 @@ const MyCampaign = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded shadow-lg">
+            <h3 className="text-xl font-bold mb-4">Confirm Deletion</h3>
+            <p>Are you sure you want to delete this campaign?</p>
+            <div className="mt-4 flex justify-end">
+              <button
+                onClick={closeModal}
+                className="btn btn-secondary mr-2"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDelete}
+                className="btn btn-danger"
+              >
+                Yes, Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
