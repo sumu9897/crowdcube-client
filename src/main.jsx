@@ -16,20 +16,30 @@ import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import AuthProvider from './providers/AuthProvider.jsx'
 import NotFound from './pages/NotFound.jsx'
+import MainLayout from './layout/MainLayout.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home/>
+    element: <MainLayout/>,
+    errorElement: <NotFound/>,
+    children :[
+      {
+        path : '/',
+        element : <Home></Home>
+      },
+      {
+        path: 'campaigns',
+        element: <AllCampaings/>,
+        loader: () => fetch('http://localhost:3530/campaign')
+      }
+      
+
+    ]
   },
   {
     path: 'addCampaign',
     element: <AddCampaing/>
-  },
-  {
-    path: 'campaigns',
-    element: <AllCampaings/>,
-    loader: () => fetch('http://localhost:3530/campaign')
   },
   {
     path: 'myCampaign',
@@ -47,10 +57,7 @@ const router = createBrowserRouter([
     path : 'signup',
     element :<Register/>
   },
-  {
-    path: '*',
-    element : <NotFound/>
-  }
+
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

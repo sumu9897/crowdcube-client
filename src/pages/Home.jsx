@@ -2,6 +2,16 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { useNavigate } from "react-router-dom";
 
+// Import Swiper components
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+
 const Home = () => {
   const [campaigns, setCampaigns] = useState([]);
   const navigate = useNavigate();
@@ -33,25 +43,96 @@ const Home = () => {
   return (
     <div>
       {/* Banner/Slider Section */}
-      <section className="mb-12">
-        <Slider {...sliderSettings}>
-          <div className="h-72 bg-cover bg-center" style={{ backgroundImage: "url('https://i.ibb.co.com/3kmWJHX/DALL-E-2024-12-06-09-01-56-An-inspiring-scene-of-diverse-people-joining-hands-in-a-circle-under-a-dr.webp?fbclid=IwY2xjawG_SdBleHRuA2FlbQIxMAABHY8f7GQWAaHGG96dbj7cUlbLU1CxjAU2bYXq77DUa9EsKRlZyxxPk10l3A_aem_InM1gvoegvmsuNNt9itDEQ')" }}>
-            <div className="h-full bg-black bg-opacity-50 flex items-center justify-center text-center text-white">
-              <h1 className="text-4xl font-bold">Join Hands to Make a Difference</h1>
-            </div>
-          </div>
-          <div className="h-72 bg-cover bg-center" style={{ backgroundImage: "url('/images/slide2.jpg')" }}>
-            <div className="h-full bg-black bg-opacity-50 flex items-center justify-center text-center text-white">
-              <h1 className="text-4xl font-bold">Every Donation Counts</h1>
-            </div>
-          </div>
-          <div className="h-72 bg-cover bg-center" style={{ backgroundImage: "url('/images/slide3.jpg')" }}>
-            <div className="h-full bg-black bg-opacity-50 flex items-center justify-center text-center text-white">
-              <h1 className="text-4xl font-bold">Be a Part of the Change</h1>
-            </div>
-          </div>
-        </Slider>
-      </section>
+      <Swiper
+            autoHeight={true}
+            spaceBetween={20}
+            navigation={true}
+            pagination={{
+                clickable: true,
+            }}
+            modules={[Navigation, Pagination]}
+            className="mySwiper"
+            >
+            <SwiperSlide>
+                <div
+                className="text-white text-center py-20 bg-cover bg-center"
+                style={{
+                    backgroundImage: `url('https://i.ibb.co.com/K5WFSD7/donation-concept-preparing-used-old-clothes-from-wardrobe-rack-into-donate-box-34048-1450.jpg')`,
+                }}
+                >
+                <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                    Warm Hearts, Warm Winters
+                </h2>
+                <p className="text-lg md:text-xl mb-6">
+                    Winter can be a harsh season for those without the proper clothing. 
+                    Together, we can help provide warmth and comfort to vulnerable communities. 
+                </p>
+                <button className="mt-6 px-6 py-2 bg-primary rounded text-white text-lg hover:bg-primary-dark">
+                    Donate Now
+                </button>
+                </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+                <div
+                className="text-white text-center py-20 bg-cover bg-center"
+                style={{
+                    backgroundImage: `url('https://i.ibb.co.com/2gY9y8k/View-Campaigns.webp')`,
+                }}
+                >
+                <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                    Every Donation Counts
+                </h2>
+                <p className="text-lg md:text-xl mb-6">
+                    A single act of kindness can spark hope in someone's life. 
+                    Every coat, sweater, or blanket you donate has the power to make winters warmer.
+                </p>
+                <button className="mt-6 px-6 py-2 bg-primary rounded text-white text-lg hover:bg-primary-dark">
+                    View Campaigns
+                </button>
+                </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+                <div
+                className="text-black text-center py-20 bg-cover bg-center"
+                style={{
+                    backgroundImage: `url('https://i.ibb.co.com/5shb8JN/watercolor-human-rights-day-background-23-2150998255.jpg')`,
+                }}
+                >
+                <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                    Together, We Create Impact
+                </h2>
+                <p className="text-lg md:text-xl mb-6">
+                    Join hands with us to build a community of compassion. 
+                    With your help, we can reach the farthest corners of Bangladesh, bringing relief to those in need.
+                </p>
+                <button className="mt-6 px-6 py-2 bg-primary rounded text-white text-lg hover:bg-primary-dark">
+                    Join as Volunteer
+                </button>
+                </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+                <div
+                className=" text-center py-20 bg-cover bg-center"
+                style={{
+                    backgroundImage: `url('https://i.ibb.co.com/qgCSWJc/learn-more.webp')`,
+                }}
+                >
+                <h2 className="text-3xl text-blue-700 md:text-5xl font-bold mb-4">
+                    Make Winter Warmer
+                </h2>
+                <p className="text-lg md:text-xl text-gray-400 mb-6">
+                    Your generosity brings smiles and warmth to countless families. 
+                    Together, we can make winters a little easier for those who need it most.
+                </p>
+                <button className="mt-6 px-6 py-2 bg-primary rounded text-white text-lg hover:bg-primary-dark">
+                    Learn More
+                </button>
+                </div>
+            </SwiperSlide>
+        </Swiper>
 
       {/* Running Campaigns Section */}
       <section className="mb-12 px-6">
