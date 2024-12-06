@@ -1,17 +1,19 @@
-# 🚀 **Crowdcube: A Crowdfunding Platform**
+# 🚀 **Crowdcube: A Crowdfunding Platform**  
 
-## 🎯 **Website Overview**
+## 🎯 **Website Overview**  
 
 Crowdcube is a dynamic crowdfunding platform where individuals can create, support, and contribute to various projects, startups, and personal causes. Whether it's raising funds for creative ideas, personal needs, or business ventures, Crowdcube empowers people to bring ideas to life by inviting others to contribute financially.
 
+![Crowdcube Logo](https://i.ibb.co/RBGH63q/crowdcube.webp)
+
 ---
 
-## 🔗 **Live Site URL**
+## 🔗 **Live Site URL**  
 [**Live Website**](https://crowdcube-934d7.web.app/)
 
 ---
 
-## 📜 **Project Features**
+## 📜 **Project Features**  
 
 - **User Authentication**:  
   Secure login and registration with **email/password**, **Google**, and **GitHub authentication**.
@@ -30,7 +32,7 @@ Crowdcube is a dynamic crowdfunding platform where individuals can create, suppo
 
 ---
 
-## 📚 **Tech Stack**
+## 📚 **Tech Stack**  
 
 - **Frontend**: React.js, React Router, Tailwind CSS  
 - **Backend**: Node.js, Express  
@@ -40,7 +42,7 @@ Crowdcube is a dynamic crowdfunding platform where individuals can create, suppo
 
 ---
 
-## 📝 **Key Functionalities**
+## 📝 **Key Functionalities**  
 
 ### 🔹 **Navbar**  
 - Contains **Home, All Campaign, My Campaign, My Donations**  
@@ -70,10 +72,11 @@ Crowdcube is a dynamic crowdfunding platform where individuals can create, suppo
 
 ---
 
-## 📂 **Repository Links**
+## 📂 **Repository Links**  
 
 ### 🔹 **Client-Side**  
-[**GitHub Client-Side Repository**](https://github.com/programming-hero-web-course2/b10-a10-client-side-sumu9897)
+[**GitHub Client-Side Repository**](https://github.com/programming-hero-web-course2/b10-a10-client-side-sumu9897)  
 
 ### 🔹 **Server-Side**  
-[**GitHub Server-Side Repository**](https://github.com/programming-hero-web-course2/b10-a10-server-side-sumu9897)
+[**GitHub Server-Side Repository**](https://github.com/programming-hero-web-course2/b10-a10-server-side-sumu9897)  
+
