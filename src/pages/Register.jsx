@@ -1,10 +1,12 @@
-import { useContext } from "react";
-import { Link } from 'react-router-dom';
+import { useContext, useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from "../providers/AuthProvider";
 
 const Register = () => {
 
     const { createUser } = useContext(AuthContext)
+    const [error, setError] = useState({});
+    const navigate = useNavigate();
 
     const handleSignUp = e => {
         e.preventDefault();

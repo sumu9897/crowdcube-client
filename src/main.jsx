@@ -15,6 +15,7 @@ import CampaignDetails from './pages/CampaignDetails.jsx' // Import the Campaign
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import AuthProvider from './providers/AuthProvider.jsx'
+import NotFound from './pages/NotFound.jsx'
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path : 'signup',
     element :<Register/>
+  },
+  {
+    path: '*',
+    element : <NotFound/>
   }
 ])
 
