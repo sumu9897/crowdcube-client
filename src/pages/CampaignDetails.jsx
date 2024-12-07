@@ -43,7 +43,7 @@ const CampaignDetails = () => {
       <div className="flex flex-col items-center text-center">
         <div className="max-w-lg">
           <img
-            className="w-full rounded-md shadow-md mb-6"
+            className="w-[500px] h-[400px] object-cover rounded-md shadow-md mb-6"
             src={campaign.image}
             alt={campaign.title}
           />
