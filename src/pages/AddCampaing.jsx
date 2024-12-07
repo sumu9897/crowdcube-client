@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const AddCampaign = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext); // Access user information from context
   const [formData, setFormData] = useState({
     image: "",
     title: "",
@@ -12,7 +12,9 @@ const AddCampaign = () => {
     description: "",
     minDonation: "",
     deadline: "",
+    userName: user?.displayName || "", // Use the logged-in user's display name
   });
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -23,16 +25,51 @@ const AddCampaign = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate Minimum Donation
-    if (formData.minDonation < 1) {
-      toast.error("Minimum donation must be at least $1!");
+    // Validate Image URL
+    if (!formData.image) {
+      toast.error("Please provide a valid image URL!");
+      return;
+    }
+
+    // Validate Campaign Title
+    if (!formData.title) {
+      toast.error("Campaign title is required!");
+      return;
+    }
+
+    // Validate Campaign Type
+    if (!formData.type) {
+      toast.error("Please select a campaign type!");
+      return;
+    }
+
+    // Validate Description
+    if (!formData.description) {
+      toast.error("Campaign description is required!");
+      return;
+    }
+
+    // Validate Minimum Donation (must be a positive number)
+    if (formData.minDonation <= 0) {
+      toast.error("Minimum donation must be a positive number!");
+      return;
+    }
+
+    // Validate Deadline (must be a future date)
+    if (new Date(formData.deadline) <= new Date()) {
+      toast.error("Deadline must be a future date!");
+      return;
+    }
+
+    // Check if the user is logged in and fetch user email
+    if (!user?.email) {
+      toast.error("User is not logged in!");
       return;
     }
 
     const campaign = {
       ...formData,
       userEmail: user?.email,
-      userName: user?.displayName || "Anonymous",
     };
 
     try {
@@ -45,7 +82,7 @@ const AddCampaign = () => {
       const result = await response.json();
 
       if (result.insertedId) {
-        toast.success("Campaign added successfully!");
+        toast.success("New campaign added successfully!");
         navigate("/myCampaign");
       } else {
         toast.error("Failed to add campaign. Please try again.");
@@ -58,8 +95,7 @@ const AddCampaign = () => {
 
   return (
     <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-3xl font-bold mb-6 text-gray-800">Add New Campaign</h2>
-
+      <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Add New Campaign</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Image URL */}
         <input
@@ -91,7 +127,9 @@ const AddCampaign = () => {
           className="select select-bordered w-full"
           required
         >
-          <option value="" disabled>Select Campaign Type</option>
+          <option value="" disabled>
+            Select Campaign Type
+          </option>
           <option value="Personal Issue">Personal Issue</option>
           <option value="Startup">Startup</option>
           <option value="Business">Business</option>
@@ -131,18 +169,20 @@ const AddCampaign = () => {
           required
         />
 
+        {/* User Name */}
+        <input
+          type="text"
+          name="userName"
+          placeholder="Your Name"
+          value={user?.displayName || ""}
+          className="input input-bordered w-full"
+          readOnly
+        />
+
         {/* User Email (Read-Only) */}
         <input
           type="text"
           value={user?.email || ""}
-          readOnly
-          className="input input-bordered w-full bg-gray-200"
-        />
-        
-        {/* User Name (Read-Only) */}
-        <input
-          type="text"
-          value={user?.displayName || "Anonymous"}
           readOnly
           className="input input-bordered w-full bg-gray-200"
         />

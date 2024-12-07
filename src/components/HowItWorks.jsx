@@ -15,7 +15,7 @@ const HowItWorks = () => {
           {steps.map((step, index) => (
             <div
               key={index}
-              className="text-center bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow"
+              className="text-center bg-white shadow-lg rounded-lg p-6" // Removed hover:shadow-xl and transition-shadow
             >
               <div className="text-4xl mb-4">{step.icon}</div>
               <h3 className="text-xl font-bold">{step.title}</h3>
