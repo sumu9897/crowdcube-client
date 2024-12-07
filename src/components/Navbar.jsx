@@ -65,11 +65,11 @@ const Navbar = () => {
                 <div className="relative group">
                   <img
                     src={user?.photo || "/default-avatar.png"} // Default avatar
-                    alt="Ur Avatar"
+                    alt="User Avatar"
                     className="w-10 h-10 rounded-full"
                   />
                   <span className="absolute left-1/2 transform -translate-x-1/2 mt-2 hidden group-hover:block bg-gray-800 text-white text-sm px-2 py-1 rounded">
-                    {user?.displayname || user?.name} {/* Fallback */}
+                    {user?.displayName || "Anonymous"} {/* Fallback if no displayName */}
                   </span>
                 </div>
                 <button
