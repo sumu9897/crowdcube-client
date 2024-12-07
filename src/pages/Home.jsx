@@ -11,6 +11,9 @@ import animationData from "../assets/animations/animation.json";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import HowItWorks from "../components/HowItWorks";
+import Testimonials from "../components/Testimonials";
+import SuccessStories from "../components/SuccessStories";
 
 const Home = () => {
   const [campaigns, setCampaigns] = useState([]);
@@ -146,6 +149,10 @@ const Home = () => {
           ))}
         </div>
       </section>
+      <HowItWorks/>
+      <Testimonials/>
+      <SuccessStories/>
+
     </div>
   );
 };

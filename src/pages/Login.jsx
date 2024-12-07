@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
+import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
-import { GoogleAuthProvider } from "firebase/auth";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const Login = () => {
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -53,8 +55,15 @@ const Login = () => {
   };
 
   return (
-    <div className="hero bg-base-200 min-h-screen flex items-center justify-center">
+    <div className="hero bg-base-200 min-h-screen flex items-center justify-center m-2">
       <div className="card w-full max-w-md bg-white shadow-xl rounded-lg p-6">
+        <div className="flex justify-center mb-4">
+          <img
+            src="https://i.ibb.co/RBGH63q/crowdcube.webp"
+            alt="Crowdcube"
+            className="w-40"
+          />
+        </div>
         <h1 className="text-3xl font-bold text-center mb-6">Welcome Back</h1>
         <form onSubmit={handleSignIn}>
           <div className="form-control mb-4">
@@ -69,17 +78,26 @@ const Login = () => {
               required
             />
           </div>
-          <div className="form-control mb-4">
+          <div className="form-control mb-4 relative">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter your password"
-              className="input input-bordered w-full"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Enter your password"
+                className="input input-bordered w-full pr-10"
+                required
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-3 flex items-center text-xl text-gray-600"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+              </button>
+            </div>
           </div>
           <div className="form-control mt-4">
             <button className="btn btn-primary w-full">Sign In</button>
@@ -90,11 +108,12 @@ const Login = () => {
           className="btn btn-outline btn-accent w-full"
           onClick={handleGoogleSignIn}
         >
+            <FcGoogle size={24} />
           Sign in with Google
         </button>
-        <p className="text-center mt-4">
+        <p className="text-center font-semibold mt-4">
           Don’t have an account?{" "}
-          <a href="/signup" className="text-blue-500 underline">
+          <a href="/signup" className="text-blue-500 hover:underline">
             Register here
           </a>
         </p>
