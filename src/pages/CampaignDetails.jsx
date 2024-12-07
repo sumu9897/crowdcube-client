@@ -35,6 +35,9 @@ const CampaignDetails = () => {
     );
   }
 
+  // Check if the deadline has passed
+  const isDeadlineCrossed = new Date(campaign.deadline) < new Date();
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col items-center text-center">
@@ -63,9 +66,14 @@ const CampaignDetails = () => {
         </p>
         <button
           onClick={handleDonate}
-          className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md text-lg shadow-md"
+          className={`${
+            isDeadlineCrossed
+              ? "bg-gray-400 text-gray-700 cursor-not-allowed"
+              : "bg-green-500 hover:bg-green-600 text-white"
+          } px-6 py-2 rounded-md text-lg shadow-md`}
+          disabled={isDeadlineCrossed}
         >
-          Donate Now
+          {isDeadlineCrossed ? "Donation Period Ended" : "Donate Now"}
         </button>
       </div>
     </div>

@@ -15,7 +15,6 @@ const MyCampaign = () => {
       fetch(`http://localhost:3530/campaign?userEmail=${user.email}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log("Fetched campaigns:", data);  // Debug log
           setCampaigns(data);
           setLoading(false);
         })
@@ -44,7 +43,6 @@ const MyCampaign = () => {
           toast.error("Failed to delete campaign.");
         }
       } catch (error) {
-        console.error(error);
         toast.error("An error occurred while deleting the campaign.");
       }
     }
@@ -62,10 +60,6 @@ const MyCampaign = () => {
     setSelectedCampaign(null);
   };
 
-  const calculateTotalDonations = (campaign) => {
-    return campaign.totalDonations || 0;
-  };
-
   if (loading) return <p>Loading campaigns...</p>;
 
   return (
@@ -79,7 +73,6 @@ const MyCampaign = () => {
               <th>#</th>
               <th>Title</th>
               <th>Type</th>
-              <th>Total Donations</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -91,10 +84,6 @@ const MyCampaign = () => {
                   <td>{index + 1}</td>
                   <td>{campaign.title}</td>
                   <td>{campaign.type}</td>
-
-                  {/* Calculate and display the total donations */}
-                  <td>${calculateTotalDonations(campaign)}</td>
-
                   <td>
                     <Link
                       to={`/updateCampaign/${campaign._id}`}
@@ -113,7 +102,7 @@ const MyCampaign = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="text-center">
+                <td colSpan="4" className="text-center">
                   No campaigns found.
                 </td>
               </tr>
