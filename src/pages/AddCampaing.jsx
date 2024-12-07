@@ -22,6 +22,13 @@ const AddCampaign = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate Minimum Donation
+    if (formData.minDonation < 1) {
+      toast.error("Minimum donation must be at least $1!");
+      return;
+    }
+
     const campaign = {
       ...formData,
       userEmail: user?.email,
@@ -31,37 +38,41 @@ const AddCampaign = () => {
     try {
       const response = await fetch("http://localhost:3530/campaign", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(campaign),
       });
+
       const result = await response.json();
+
       if (result.insertedId) {
         toast.success("Campaign added successfully!");
         navigate("/myCampaign");
       } else {
-        toast.error("Failed to add campaign!");
+        toast.error("Failed to add campaign. Please try again.");
       }
     } catch (error) {
       console.error(error);
-      toast.error("Something went wrong!");
+      toast.error("Something went wrong! Please check the server.");
     }
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Add New Campaign</h2>
+    <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
+      <h2 className="text-3xl font-bold mb-6 text-gray-800">Add New Campaign</h2>
+
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Image URL */}
         <input
           type="text"
           name="image"
-          placeholder="Image URL"
+          placeholder="Campaign Image URL"
           value={formData.image}
           onChange={handleChange}
           className="input input-bordered w-full"
           required
         />
+
+        {/* Campaign Title */}
         <input
           type="text"
           name="title"
@@ -71,6 +82,8 @@ const AddCampaign = () => {
           className="input input-bordered w-full"
           required
         />
+
+        {/* Campaign Type */}
         <select
           name="type"
           value={formData.type}
@@ -79,19 +92,24 @@ const AddCampaign = () => {
           required
         >
           <option value="" disabled>Select Campaign Type</option>
-          <option value="personal issue">Personal Issue</option>
-          <option value="startup">Startup</option>
-          <option value="business">Business</option>
-          <option value="creative ideas">Creative Ideas</option>
+          <option value="Personal Issue">Personal Issue</option>
+          <option value="Startup">Startup</option>
+          <option value="Business">Business</option>
+          <option value="Creative Ideas">Creative Ideas</option>
         </select>
+
+        {/* Description */}
         <textarea
           name="description"
-          placeholder="Description"
+          placeholder="Campaign Description"
           value={formData.description}
           onChange={handleChange}
           className="textarea textarea-bordered w-full"
+          rows="4"
           required
         ></textarea>
+
+        {/* Minimum Donation */}
         <input
           type="number"
           name="minDonation"
@@ -99,8 +117,11 @@ const AddCampaign = () => {
           value={formData.minDonation}
           onChange={handleChange}
           className="input input-bordered w-full"
+          min="1"
           required
         />
+
+        {/* Deadline */}
         <input
           type="date"
           name="deadline"
@@ -109,19 +130,28 @@ const AddCampaign = () => {
           className="input input-bordered w-full"
           required
         />
+
+        {/* User Email (Read-Only) */}
         <input
           type="text"
           value={user?.email || ""}
           readOnly
           className="input input-bordered w-full bg-gray-200"
         />
+        
+        {/* User Name (Read-Only) */}
         <input
           type="text"
           value={user?.displayName || "Anonymous"}
           readOnly
           className="input input-bordered w-full bg-gray-200"
         />
-        <button type="submit" className="btn btn-primary w-full">
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="btn btn-primary w-full bg-blue-500 text-white font-semibold rounded-lg shadow hover:bg-blue-600 transition"
+        >
           Add Campaign
         </button>
       </form>

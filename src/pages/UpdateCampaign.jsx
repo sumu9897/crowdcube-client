@@ -12,8 +12,14 @@ const UpdateCampaign = () => {
   useEffect(() => {
     fetch(`http://localhost:3530/campaign/${id}`)
       .then((res) => res.json())
-      .then((data) => setFormData(data))
-      .catch((err) => console.error(err));
+      .then((data) => {
+        setFormData(data);
+        console.log("Loaded Campaign Data:", data);
+      })
+      .catch((err) => {
+        console.error("Error fetching campaign:", err);
+        toast.error("Failed to load campaign data!");
+      });
   }, [id]);
 
   const handleChange = (e) => {
@@ -23,6 +29,8 @@ const UpdateCampaign = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("Submitting Form Data:", formData);
 
     try {
       const response = await fetch(`http://localhost:3530/campaign/${id}`, {
@@ -34,15 +42,16 @@ const UpdateCampaign = () => {
       });
 
       const result = await response.json();
+      console.log("Server Response:", result);
 
       if (result.modifiedCount > 0) {
-        toast.success("Campaign updated successfully!"); // Success toast
-        navigate("/myCampaign"); // Redirect to /myCampaign
+        toast.success("Campaign updated successfully!");
+        navigate("/myCampaign");
       } else {
         toast.error("No changes were made to the campaign.");
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error updating campaign:", error);
       toast.error("Failed to update campaign!");
     }
   };
@@ -59,7 +68,7 @@ const UpdateCampaign = () => {
           type="text"
           name="image"
           placeholder="Image URL"
-          value={formData.image}
+          value={formData.image || ""}
           onChange={handleChange}
           className="input input-bordered w-full"
         />
@@ -67,13 +76,13 @@ const UpdateCampaign = () => {
           type="text"
           name="title"
           placeholder="Campaign Title"
-          value={formData.title}
+          value={formData.title || ""}
           onChange={handleChange}
           className="input input-bordered w-full"
         />
         <select
           name="type"
-          value={formData.type}
+          value={formData.type || ""}
           onChange={handleChange}
           className="select select-bordered w-full"
         >
@@ -85,7 +94,7 @@ const UpdateCampaign = () => {
         <textarea
           name="description"
           placeholder="Description"
-          value={formData.description}
+          value={formData.description || ""}
           onChange={handleChange}
           className="textarea textarea-bordered w-full"
         ></textarea>
@@ -93,14 +102,14 @@ const UpdateCampaign = () => {
           type="number"
           name="minDonation"
           placeholder="Minimum Donation Amount"
-          value={formData.minDonation}
+          value={formData.minDonation || ""}
           onChange={handleChange}
           className="input input-bordered w-full"
         />
         <input
           type="date"
           name="deadline"
-          value={formData.deadline}
+          value={formData.deadline ? formData.deadline.split("T")[0] : ""}
           onChange={handleChange}
           className="input input-bordered w-full"
         />
