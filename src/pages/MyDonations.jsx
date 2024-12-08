@@ -15,7 +15,7 @@ const MyDonations = () => {
       return;
     }
 
-    fetch(`http://localhost:3530/myDonations?email=${user.email}`)
+    fetch(`https://crowdcube-server-lemon.vercel.app/myDonations?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setDonations(

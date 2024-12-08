@@ -12,7 +12,7 @@ const MyCampaign = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3530/campaign?userEmail=${user.email}`)
+      fetch(`https://crowdcube-server-lemon.vercel.app/campaign?userEmail=${user.email}`)
         .then((res) => res.json())
         .then((data) => {
           setCampaigns(data);
@@ -29,7 +29,7 @@ const MyCampaign = () => {
   const handleDelete = async () => {
     if (selectedCampaign) {
       try {
-        const response = await fetch(`http://localhost:3530/campaign/${selectedCampaign}`, {
+        const response = await fetch(`https://crowdcube-server-lemon.vercel.app/campaign/${selectedCampaign}`, {
           method: "DELETE",
         });
         const result = await response.json();

@@ -29,7 +29,7 @@ const Register = () => {
           photo,
         };
 
-        fetch("http://localhost:3530/users", {
+        fetch("https://crowdcube-server-lemon.vercel.app/users", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newUser),

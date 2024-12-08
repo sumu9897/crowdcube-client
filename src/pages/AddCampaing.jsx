@@ -42,7 +42,7 @@ const AddCampaign = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3530/campaign", {
+      const response = await fetch("https://crowdcube-server-lemon.vercel.app/campaign", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(campaign),

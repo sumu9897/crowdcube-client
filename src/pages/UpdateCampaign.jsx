@@ -10,7 +10,7 @@ const UpdateCampaign = () => {
   const [formData, setFormData] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3530/campaign/${id}`)
+    fetch(`https://crowdcube-server-lemon.vercel.app/campaign/${id}`)
       .then((res) => res.json())
       .then((data) => setFormData(data))
       .catch((err) => {
@@ -28,7 +28,7 @@ const UpdateCampaign = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:3530/campaign/${id}`, {
+      const response = await fetch(`https://crowdcube-server-lemon.vercel.app/campaign/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

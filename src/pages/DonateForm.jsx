@@ -16,7 +16,7 @@ const DonateForm = () => {
 
   // Fetch campaign details to get the title
   useEffect(() => {
-    fetch(`http://localhost:3530/campaign/${id}`)
+    fetch(`https://crowdcube-server-lemon.vercel.app/campaign/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setCampaignTitle(data.title);
@@ -44,7 +44,7 @@ const DonateForm = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3530/donate", {
+      const response = await fetch("https://crowdcube-server-lemon.vercel.app/donate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(donation),

@@ -18,60 +18,21 @@ const Banner = () => {
         modules={[Navigation, Pagination, Autoplay]}
         className="mySwiper"
       >
-        {/* Slide 1 */}
-        <SwiperSlide>
-          <div
-            className="text-white text-center py-20 md:py-40 bg-cover bg-center flex flex-col justify-center items-center"
-            style={{
-              backgroundImage: `url('https://i.ibb.co/K5WFSD7/donation-concept-preparing-used-old-clothes.jpg')`,
-            }}
-          >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 drop-shadow-md">
-              Warm Hearts, Warm Winters
-            </h2>
-            <p className="text-lg md:text-xl mb-8 max-w-2xl drop-shadow-md">
-              Together, we bring warmth to vulnerable communities this winter.
-              Your contribution can make a difference!
-            </p>
-            <button className="mt-6 px-8 py-3 bg-primary rounded-lg text-white font-semibold hover:bg-primary-dark transition-all duration-300">
-              Donate Now
-            </button>
-          </div>
-        </SwiperSlide>
+        
 
-        {/* Slide 2 */}
-        <SwiperSlide>
-          <div
-            className="text-white text-center py-20 md:py-40 bg-cover bg-center flex flex-col justify-center items-center"
-            style={{
-              backgroundImage: `url('https://i.ibb.co/7NH7qT7/community-help.jpg')`,
-            }}
-          >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 drop-shadow-md">
-              Support Ongoing Campaigns
-            </h2>
-            <p className="text-lg md:text-xl mb-8 max-w-2xl drop-shadow-md">
-              Join hands to contribute and make a difference in people's lives
-              with our active campaigns.
-            </p>
-            <button className="mt-6 px-8 py-3 bg-secondary rounded-lg text-white font-semibold hover:bg-secondary-dark transition-all duration-300">
-              View Campaigns
-            </button>
-          </div>
-        </SwiperSlide>
 
         {/* Slide 3 */}
         <SwiperSlide>
           <div
             className="text-white text-center py-20 md:py-40 bg-cover bg-center flex flex-col justify-center items-center"
             style={{
-              backgroundImage: `url('https://i.ibb.co/F7NzKr9/helping-hand.jpg')`,
+              backgroundImage: `url('https://i.ibb.co.com/sggf3JW/Real-Time-Impact-Updates.png')`,
             }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 drop-shadow-md">
+            <h2 className="text-3xl md:text-5xl text-black font-bold mb-6 drop-shadow-md">
               Real-Time Impact Updates
             </h2>
-            <p className="text-lg md:text-xl mb-8 max-w-2xl drop-shadow-md">
+            <p className="text-lg md:text-xl text-black mb-8 max-w-2xl drop-shadow-md">
               See exactly how your contributions are changing lives. Stay
               informed with real-time updates.
             </p>
@@ -86,13 +47,13 @@ const Banner = () => {
           <div
             className="text-white text-center py-20 md:py-40 bg-cover bg-center flex flex-col justify-center items-center"
             style={{
-              backgroundImage: `url('https://i.ibb.co/R2pDM9q/volunteer.jpg')`,
+              backgroundImage: `url('https://i.ibb.co.com/LnF4Gcq/Volunteer-With-Us.jpg')`,
             }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 drop-shadow-md">
+            <h2 className="text-3xl md:text-5xl text-black font-bold mb-6 drop-shadow-md">
               Volunteer With Us
             </h2>
-            <p className="text-lg md:text-xl mb-8 max-w-2xl drop-shadow-md">
+            <p className="text-lg md:text-xl text-black mb-8 max-w-2xl drop-shadow-md">
               Be a part of our mission to make the world a better place. Sign up
               to volunteer and create a lasting impact.
             </p>
@@ -107,13 +68,13 @@ const Banner = () => {
           <div
             className="text-white text-center py-20 md:py-40 bg-cover bg-center flex flex-col justify-center items-center"
             style={{
-              backgroundImage: `url('https://i.ibb.co/fXvCmDk/fundraiser.jpg')`,
+              backgroundImage: `url('https://i.ibb.co.com/R2ysdjG/Start-Your-Fundraiser.jpg')`,
             }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 drop-shadow-md">
+            <h2 className="text-3xl md:text-5xl text-black font-bold mb-6 drop-shadow-md">
               Start Your Fundraiser
             </h2>
-            <p className="text-lg md:text-xl mb-8 max-w-2xl drop-shadow-md">
+            <p className="text-lg md:text-xl text-black mb-8 max-w-2xl drop-shadow-md">
               Have a cause you're passionate about? Launch your fundraiser and
               bring your community together.
             </p>

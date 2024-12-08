@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       {
         path: 'campaigns',
         element: <AllCampaings/>,
-        loader: () => fetch('http://localhost:3530/campaign')
+        loader: () => fetch('https://crowdcube-server-lemon.vercel.app/campaign')
       },
       {
         path: 'addCampaign',

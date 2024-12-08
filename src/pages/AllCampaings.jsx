@@ -8,7 +8,7 @@ const AllCampaings = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3530/campaign")
+    fetch("https://crowdcube-server-lemon.vercel.app/campaign")
       .then((res) => res.json())
       .then((data) => {
         setCampaigns(data);

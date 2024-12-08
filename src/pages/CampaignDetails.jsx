@@ -10,7 +10,7 @@ const CampaignDetails = () => {
   const [campaign, setCampaign] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3530/campaign/${id}`)
+    fetch(`https://crowdcube-server-lemon.vercel.app/campaign/${id}`)
       .then((res) => res.json())
       .then((data) => setCampaign(data))
       .catch((err) => {
