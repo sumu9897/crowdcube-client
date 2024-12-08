@@ -12,7 +12,7 @@ const AddCampaign = () => {
     description: "",
     minDonation: "",
     deadline: "",
-    userName: user?.displayName || "", // Use the logged-in user's display name
+    //userName: user?.displayName || "", // Use the logged-in user's display name
   });
 
   const navigate = useNavigate();
@@ -39,6 +39,7 @@ const AddCampaign = () => {
     const campaign = {
       ...formData,
       userEmail: user?.email,
+      userName: user?.name,
     };
 
     try {
@@ -145,7 +146,7 @@ const AddCampaign = () => {
           type="text"
           name="userName"
           placeholder="Your Name"
-          value={user?.displayName || ""}
+          value={user?.displayName || user?.name || ""}
           className="input input-bordered w-full"
           readOnly
         />

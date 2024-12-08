@@ -75,7 +75,7 @@ const Navbar = () => {
                     className="w-10 h-10 rounded-full"
                   />
                   <span className="absolute left-1/2 transform -translate-x-1/2 mt-2 hidden group-hover:block bg-gray-800 text-white text-sm px-2 py-1 rounded">
-                    {user.displayName || user.email}
+                    {user.displayName || user.name}
                   </span>
                 </div>
                 <button
@@ -132,29 +132,6 @@ const Navbar = () => {
                   className="text-white hover:text-gray-200"
                 >
                   My Donations
-                </Link>
-              </>
-            )}
-            {user ? (
-              <button
-                onClick={handleLogout}
-                className="bg-red-600 text-white px-4 py-2 rounded"
-              >
-                Logout
-              </button>
-            ) : (
-              <>
-                <Link
-                  to="/signin"
-                  className="bg-gray-100 text-blue-600 px-4 py-2 rounded"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/signup"
-                  className="bg-white text-blue-600 px-4 py-2 rounded"
-                >
-                  Register
                 </Link>
               </>
             )}

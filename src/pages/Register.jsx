@@ -36,6 +36,7 @@ const Register = () => {
         })
           .then((res) => res.json())
           .then(() => {
+            // Show success toast
             Swal.fire({
               icon: "success",
               title: "Registration Successful",
@@ -43,7 +44,11 @@ const Register = () => {
               showConfirmButton: false,
               timer: 1500,
             });
-            navigate("/myCampaign");
+
+            // Redirect to All Campaign page after 1.5 seconds
+            setTimeout(() => {
+              navigate("/allCampaign");
+            }, 1500);
           });
       })
       .catch((err) => {
