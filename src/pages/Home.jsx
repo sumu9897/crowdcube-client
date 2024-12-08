@@ -46,24 +46,24 @@ const Home = () => {
       <Banner />
 
       {/* Running Campaigns Section */}
-<section className="mb-12 px-6">
+      <section className="mb-12 px-6">
   <h2 className="text-3xl font-bold text-center mb-8">
     Running Campaigns
   </h2>
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {campaigns.map((campaign) => (
       <Fade key={campaign._id}>
-        <div className="rounded-lg overflow-hidden shadow-lg bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600">
+        <div className="flex flex-col h-full rounded-lg overflow-hidden shadow-lg bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600">
           <img
             src={campaign.image}
             alt={campaign.title}
             className="h-48 w-full object-cover"
           />
-          <div className="p-4">
+          <div className="flex flex-col justify-between p-4 h-full">
             <h3 className="font-bold text-xl mt-2 text-gray-800 dark:text-gray-100">
               {campaign.title}
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 mt-2">
+            <p className="text-gray-600 dark:text-gray-400 mt-2 flex-grow">
               {campaign.description.slice(0, 100)}...
             </p>
             <button
@@ -81,45 +81,46 @@ const Home = () => {
   </div>
 </section>
 
-{/* FAQ Section */}
-<section className="px-6 py-12 bg-gray-50 dark:bg-gray-900">
-  <h2 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
-    <Typewriter
-      words={["Frequently Asked Questions"]}
-      loop={false}
-      cursor
-      cursorStyle="_"
-      typeSpeed={70}
-      deleteSpeed={50}
-    />
-  </h2>
-  <div className="space-y-4">
-    <div className="p-4 bg-white dark:bg-gray-800 shadow rounded-lg border border-gray-300 dark:border-gray-600">
-      <h3 className="text-xl font-semibold flex items-center text-gray-900 dark:text-gray-100">
-        <AiOutlineQuestionCircle className="mr-2" /> What is this platform about?
-      </h3>
-      <p className="mt-2 text-gray-700 dark:text-gray-300">
-        This platform helps connect donors and communities in need through transparent and efficient fundraising campaigns.
-      </p>
-    </div>
-    <div className="p-4 bg-white dark:bg-gray-800 shadow rounded-lg border border-gray-300 dark:border-gray-600">
-      <h3 className="text-xl font-semibold flex items-center text-gray-900 dark:text-gray-100">
-        <AiOutlineQuestionCircle className="mr-2" /> How can I donate?
-      </h3>
-      <p className="mt-2 text-gray-700 dark:text-gray-300">
-        Simply browse through the running campaigns and click "Donate Now" to contribute securely.
-      </p>
-    </div>
-    <div className="p-4 bg-white dark:bg-gray-800 shadow rounded-lg border border-gray-300 dark:border-gray-600">
-      <h3 className="text-xl font-semibold flex items-center text-gray-900 dark:text-gray-100">
-        <AiOutlineQuestionCircle className="mr-2" /> Is my donation secure?
-      </h3>
-      <p className="mt-2 text-gray-700 dark:text-gray-300">
-        Yes, we use industry-standard security measures to protect your transactions.
-      </p>
-    </div>
-  </div>
-</section>
+
+            {/* FAQ Section */}
+            <section className="px-6 py-12 bg-gray-50 dark:bg-gray-900">
+            <h2 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+                <Typewriter
+                words={["Frequently Asked Questions"]}
+                loop={false}
+                cursor
+                cursorStyle="_"
+                typeSpeed={70}
+                deleteSpeed={50}
+                />
+            </h2>
+            <div className="space-y-4">
+                <div className="p-4 bg-white dark:bg-gray-800 shadow rounded-lg border border-gray-300 dark:border-gray-600">
+                <h3 className="text-xl font-semibold flex items-center text-gray-900 dark:text-gray-100">
+                    <AiOutlineQuestionCircle className="mr-2" /> What is this platform about?
+                </h3>
+                <p className="mt-2 text-gray-700 dark:text-gray-300">
+                    This platform helps connect donors and communities in need through transparent and efficient fundraising campaigns.
+                </p>
+                </div>
+                <div className="p-4 bg-white dark:bg-gray-800 shadow rounded-lg border border-gray-300 dark:border-gray-600">
+                <h3 className="text-xl font-semibold flex items-center text-gray-900 dark:text-gray-100">
+                    <AiOutlineQuestionCircle className="mr-2" /> How can I donate?
+                </h3>
+                <p className="mt-2 text-gray-700 dark:text-gray-300">
+                    Simply browse through the running campaigns and click "Donate Now" to contribute securely.
+                </p>
+                </div>
+                <div className="p-4 bg-white dark:bg-gray-800 shadow rounded-lg border border-gray-300 dark:border-gray-600">
+                <h3 className="text-xl font-semibold flex items-center text-gray-900 dark:text-gray-100">
+                    <AiOutlineQuestionCircle className="mr-2" /> Is my donation secure?
+                </h3>
+                <p className="mt-2 text-gray-700 dark:text-gray-300">
+                    Yes, we use industry-standard security measures to protect your transactions.
+                </p>
+                </div>
+            </div>
+            </section>
 
 
       <SuccessStories />

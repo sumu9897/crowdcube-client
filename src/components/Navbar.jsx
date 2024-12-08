@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -7,8 +7,23 @@ import "react-toastify/dist/ReactToastify.css";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
+  const [mongoUser, setMongoUser] = useState(null); // MongoDB user data
   const navigate = useNavigate();
-  const location = useLocation(); // Get current location to highlight active link
+  const location = useLocation();
+
+  // Fetch user data from MongoDB if logged in
+  useEffect(() => {
+    if (user?.email) {
+      fetch(`/users/${user.email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data) setMongoUser(data);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch user from MongoDB:", error);
+        });
+    }
+  }, [user]);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -16,16 +31,19 @@ const Navbar = () => {
     logOut()
       .then(() => {
         toast.success("Successfully logged out!");
-        navigate("/"); // Redirect to home page
+        navigate("/");
       })
       .catch(() => toast.error("Failed to log out."));
   };
 
   const getActiveClass = (path) => {
     return location.pathname === path
-      ? "text-blue-300" // Active link color
-      : "text-white hover:text-gray-300"; // Inactive link color
+      ? "text-blue-300"
+      : "text-white hover:text-gray-300";
   };
+
+  const displayName = mongoUser?.name || user?.displayName || "Anonymous";
+  const displayPhoto = mongoUser?.photoURL || user?.photoURL || "/default-avatar.png";
 
   return (
     <nav className="bg-gradient-to-r from-blue-600 to-blue-700 shadow-md">
@@ -53,12 +71,12 @@ const Navbar = () => {
             {user ? (
               <div className="relative group">
                 <img
-                  src={user?.photoURL || "/default-avatar.png"} // Fetch image from Firebase/Database
+                  src={displayPhoto}
                   alt="User Avatar"
                   className="w-10 h-10 rounded-full cursor-pointer hover:ring-4 ring-blue-500 transition-all"
                 />
-                <span className="absolute left-1/2 transform -translate-x-1/2 mt-2 hidden group-hover:block bg-gray-800 text-white text-sm px-2 py-1 rounded shadow-lg">
-                  {user?.displayName || "Anonymous"}
+                <span className="absolute left-1/2 transform -translate-x-1/2 mt-2 hidden group-hover:block bg-gray-800 text-white text-sm px-2 py-1 rounded shadow-lg transition-all opacity-0 group-hover:opacity-100">
+                  {displayName}
                 </span>
               </div>
             ) : (

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const CampaignDetails = () => {
   const { id } = useParams();
@@ -20,10 +20,21 @@ const CampaignDetails = () => {
   }, [id]);
 
   const handleDonate = () => {
+    if (!campaign) return;
+
+    // Check if the deadline has passed
+    const isDeadlineCrossed = new Date(campaign.deadline) < new Date();
+
+    if (isDeadlineCrossed) {
+      toast.error("The donation period for this campaign has ended.");
+      return;
+    }
+
     if (!user) {
       navigate(`/signin?redirect=/donate/${id}`);
       return;
     }
+
     navigate(`/donate/${id}`);
   };
 
@@ -35,11 +46,11 @@ const CampaignDetails = () => {
     );
   }
 
-  // Check if the deadline has passed
   const isDeadlineCrossed = new Date(campaign.deadline) < new Date();
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <Toaster position="top-right" reverseOrder={false} />
       <div className="flex flex-col items-center text-center">
         <div className="max-w-lg">
           <img
