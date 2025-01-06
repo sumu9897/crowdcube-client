@@ -27,7 +27,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-600 shadow-lg">
+    <nav className="fixed w-full  z-10 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <Link to="/" className="text-white text-xl font-bold">
@@ -40,6 +40,10 @@ const Navbar = () => {
             </Link>
             <Link to="/campaigns" className="text-white hover:text-gray-200">
               All Campaigns
+            </Link>
+            <Link to='/about' className="text-white hover:text-gray-200"> About Us
+            </Link>
+            <Link to='contact' className="text-white hover:text-gray-200"> Contact
             </Link>
             {user && (
               <>
