@@ -23,7 +23,6 @@ import PrivateRoute from './routes/privateRoute.jsx'
 import MyDonations from './pages/MyDonations.jsx'
 import DonateForm from './pages/DonateForm.jsx'
 import AboutUs from './pages/AboutUs.jsx'
-import ContactUs from './pages/ContactUs.jsx'
 
 const router = createBrowserRouter([
   {
@@ -50,9 +49,6 @@ const router = createBrowserRouter([
       },{
         path: 'about',
         element:<AboutUs></AboutUs>
-      },{
-        path: 'contact',
-        element: <ContactUs></ContactUs>
       },
       
       {

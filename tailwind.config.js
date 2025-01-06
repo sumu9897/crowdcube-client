@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+      colors:{
+        primary: '#02acd0',
+        secondary: '#89cda3'
+      },
       animation: {
         bounce: "bounce 2s infinite",
         floating: "floating 3s ease-in-out infinite",

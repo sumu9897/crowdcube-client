@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { MdDeleteForever } from "react-icons/md";
+
 
 const MyCampaign = () => {
   const { user } = useContext(AuthContext);
@@ -98,18 +100,19 @@ const MyCampaign = () => {
                     {campaign.title}
                   </td>
                   <td className="px-4 py-2 text-gray-600">{campaign.type}</td>
-                  <td className="px-4 py-2">
+                  <td className="px-4 py-2 items-center flex">
                     <Link
                       to={`/updateCampaign/${campaign._id}`}
-                      className="px-4 py-2 text-white bg-yellow-500 hover:bg-yellow-600 rounded shadow-md transition inline-block mr-2"
+                      className="px-4 py-2 text-white bg-secondary hover:bg-green-300 hover:text-black rounded shadow-md transition inline-block mr-2"
                     >
                       Update
                     </Link>
                     <button
                       onClick={() => openModal(campaign._id)}
-                      className="px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded shadow-md transition"
+                      className="px-5 py-2 text-black hover:bg-red-500 hover:text-white rounded shadow-md transition"
                     >
-                      Delete
+                      <MdDeleteForever className="size-6" />
+
                     </button>
                   </td>
                 </tr>

@@ -24,7 +24,7 @@ const CampaignCard = ({ campaign }) => {
 
         {/* Minimum Donation */}
         <p className="flex items-center text-sm text-gray-600 mb-2">
-          <FaDollarSign className="text-yellow-500 mr-1" />
+          <FaDollarSign className="text-primary mr-1" />
           <span>
             Minimum Donation: <strong>${donation}</strong>
           </span>
@@ -32,7 +32,7 @@ const CampaignCard = ({ campaign }) => {
 
         {/* Deadline */}
         <p className="flex items-center text-sm text-gray-600 mb-4">
-          <FaCalendarAlt className="text-yellow-500 mr-1" />
+          <FaCalendarAlt className="text-primary mr-1" />
           <span>
             Deadline: <strong>{new Date(deadline).toLocaleDateString()}</strong>
           </span>
@@ -46,7 +46,7 @@ const CampaignCard = ({ campaign }) => {
         {/* See More Button */}
         <Link
           to={`/campaign/${_id}`}
-          className="inline-block w-full text-center px-4 py-2 bg-yellow-400 text-gray-900 rounded-md font-medium hover:bg-yellow-500 transition"
+          className="inline-block w-full text-center px-4 py-2 bg-primary text-gray-900 rounded-md font-medium hover:bg-blue-300 transition"
         >
           See More
         </Link>

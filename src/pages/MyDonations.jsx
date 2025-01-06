@@ -47,7 +47,7 @@ const MyDonations = () => {
             >
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-semibold text-gray-800">{donation.campaignTitle}</h3>
-                <p className="text-lg text-green-600 font-semibold">${donation.amount.toFixed(2)}</p>
+                <p className="text-lg text-secondary font-semibold">${donation.amount.toFixed(2)}</p>
               </div>
               <p className="text-sm text-gray-600">
                 <strong>Date & Time:</strong> {new Date(donation.date).toLocaleString()}

@@ -77,7 +77,7 @@ Crowdcube is a dynamic crowdfunding platform where individuals can create, suppo
 ## 📂 **Repository Links**  
 
 ### 🔹 **Client-Side**  
-[**GitHub Client-Side Repository**](https://github.com/programming-hero-web-course2/b10-a10-client-side-sumu9897)  
+[**GitHub Client-Side Repository**](https://github.com/sumu9897/crowdcube-client)  
 
 ### 🔹 **Server-Side**  
-[**GitHub Server-Side Repository**](https://github.com/programming-hero-web-course2/b10-a10-server-side-sumu9897)  
+[**GitHub Server-Side Repository**](https://github.com/sumu9897/crowdcube-server)  

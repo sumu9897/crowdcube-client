@@ -36,7 +36,7 @@ const Banner = () => {
               See exactly how your contributions are changing lives. Stay
               informed with real-time updates.
             </p>
-            <button className="mt-6 px-8 py-3 bg-green-500 rounded-lg text-white font-semibold hover:bg-green-600 transition-all duration-300">
+            <button className="mt-6 px-8 py-3 bg-primary rounded-lg text-white font-semibold hover:bg-secondary transition-all duration-300">
               Learn More
             </button>
           </div>
@@ -57,7 +57,7 @@ const Banner = () => {
               Be a part of our mission to make the world a better place. Sign up
               to volunteer and create a lasting impact.
             </p>
-            <button className="mt-6 px-8 py-3 bg-blue-500 rounded-lg text-white font-semibold hover:bg-blue-600 transition-all duration-300">
+            <button className="mt-6 px-8 py-3 bg-primary rounded-lg text-white font-semibold hover:bg-secondary transition-all duration-300">
               Join as a Volunteer
             </button>
           </div>
@@ -78,7 +78,7 @@ const Banner = () => {
               Have a cause you're passionate about? Launch your fundraiser and
               bring your community together.
             </p>
-            <button className="mt-6 px-8 py-3 bg-orange-500 rounded-lg text-white font-semibold hover:bg-orange-600 transition-all duration-300">
+            <button className="mt-6 px-8 py-3 bg-primary rounded-lg text-white font-semibold hover:bg-secondary transition-all duration-300">
               Start Now
             </button>
           </div>
